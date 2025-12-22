@@ -63,7 +63,7 @@ const GetUser = async (req, res) => {
 
     res.json({
       success: true,
-      message: "Barcha foydalanuvchilar ro‘yxati",
+      message: "Barcha foydalanuvchilar royxati",
       data: users,
     });
   } catch (error) {
