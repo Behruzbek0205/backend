@@ -16,21 +16,21 @@ const CreateCar = async (req, res) => {
       price,
     } = req.body;
 
-    if (!username || !password) {
+    if (!title || !model) {
       return res.status(400).json({
         success: false,
         message: "Model va yearMachine majburiy",
       });
     }
 
-    const oldUser = await User.findOne({ username });
-    if (oldUser) {
+    const OldCard = await Car.findOne({ title });
+    if (OldCard) {
       return res.status(400).json({
         success: false,
         message: "Car allaqachon mavjud",
       });
     }
-    const newUser = new Car({
+    const newCar = new Car({
       title,
       model,
       discription,
@@ -44,12 +44,12 @@ const CreateCar = async (req, res) => {
       price,
     });
 
-    await newUser.save();
+    await newCar.save();
 
     res.status(201).json({
       success: true,
       message: "Car muvaffaqiyatli qoshildi",
-      user: newUser,
+      user: newCar,
     });
   } catch (error) {
     res.status(500).json({

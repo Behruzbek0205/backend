@@ -28,7 +28,8 @@ ConnecttionToDB();
 const { userRoute } = require("./routes/user.route");
 index.use("/users", userRoute);
 
-
+const { carRoute } = require("./routes/car.router");
+index.use("/cars", carRoute);
 
 // Port
 const PORT = process.env.PORT || 3000;
