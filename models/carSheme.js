@@ -1,4 +1,5 @@
-const { Schema } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const carSheme = new Schema({
   title: { type: String, required: true },
@@ -15,4 +16,6 @@ const carSheme = new Schema({
 });
 
 const Car = mongoose.model("Car", carSheme);
-module.exports = { Car };
+module.exports = { Car }
+
+
