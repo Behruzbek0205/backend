@@ -1,5 +1,5 @@
 const { User } = require("../models/userSheme");
-
+const bcrypt = require("bcrypt");
 // CREATE USER
 const CreateUser = async (req, res) => {
   try {
@@ -28,10 +28,10 @@ const CreateUser = async (req, res) => {
         message: "User allaqachon mavjud",
       });
     }
-
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       username,
-      password,
+      password: hashedPassword,
       firstname,
       lastname,
       gender,
@@ -167,3 +167,7 @@ module.exports = {
   updateUser,
   deleteUser,
 };
+
+
+
+// homework car qoshiladon create yani post qilib kelish 
