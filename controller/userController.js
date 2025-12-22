@@ -56,7 +56,7 @@ const CreateUser = async (req, res) => {
   }
 };
 
-// GET ALL USERS
+// Get All Users
 const GetUser = async (req, res) => {
   try {
     const users = await User.find();
