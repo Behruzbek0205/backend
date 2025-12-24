@@ -59,6 +59,26 @@ const CreateCar = async (req, res) => {
     });
   }
 };
+
+// GetCar
+const GetCar = async (req, res) => {
+  try {
+    const cars = await Car.find();
+    res.status(200).json({
+      success: true,
+      data: cars,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
+
 module.exports = {
   CreateCar,
+  GetCar,   
 };

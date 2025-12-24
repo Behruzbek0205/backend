@@ -164,26 +164,31 @@ const deleteUser = async (req, res) => {
 // postLogin
 
 const postLogin = async (req, res) => {
-  try{
-    const {username, password} = req.bodyc
-    const user = await User.findOne({username})
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
     console.log(user);
-    if(!user) {
-      return res.status(491).json({
-        success: false,
-        message: "Username is invalid"
-      })
-
-    }
-    const passwordMatch = await bcrypt.compare(password , user.password)
-    if(!passwordMatch){
+    if (!user) {
       return res.status(401).json({
         success: false,
-        message: "Username or password is invalid"
-      })
+        message: "Username is invalid",
+      });
     }
-    const token = jwt.sign({username: user.username}, 'secret')
-    return
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Username or password is invalid",
+      });
+    }
+    const token = jwt.sign({ username: user.username }, "secret");
+    return res.json({ message: "Token", token: token });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server xatosi",
+      error: error.message,
+    });
   }
 };
 
@@ -193,6 +198,7 @@ module.exports = {
   GetUserById,
   updateUser,
   deleteUser,
+  postLogin,
 };
 
 // homework car qoshiladon create yani post qilib kelish
