@@ -103,10 +103,42 @@ const GetCarByID = async (req, res) => {
     });
   }
 }
+//  Update car
+const updateCar = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, model, discription, color, horsePower, carType, charging, weight, gasoline, yearMachine, price } = req.body;
+
+    const updateCar = await Car.findByIdAndUpdate(
+      id,
+      { title, model, discription, color, horsePower, carType, charging, weight, gasoline, yearMachine, price },
+      { new: true }
+    );
+    if (!updateCar) {
+      return res.status(404).json({
+        success: false,
+        message: "Car not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Car update seccesfully",
+      car: updateCar,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 
 
 module.exports = {
   CreateCar,
   GetCar,   
-  GetCarByID
+  GetCarByID,
+  updateCar,
 };
