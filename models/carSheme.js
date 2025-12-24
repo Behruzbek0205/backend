@@ -9,7 +9,7 @@ const carSheme = new Schema({
   horsePower: { type: Number, required: true },
   carType: { type: String, required: true },
   charging: { type: String },
-  weight: { type: String, required: true },
+  weight: { type: Number, required: true },
   gasoline: { type: String, required: true },
   yearMachine: { type: String, required: true },
   price: { type: Number, required: true },

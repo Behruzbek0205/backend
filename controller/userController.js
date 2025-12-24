@@ -1,5 +1,6 @@
 const { User } = require("../models/userSheme");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 // CREATE USER
 const CreateUser = async (req, res) => {
   try {
@@ -160,6 +161,32 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// postLogin
+
+const postLogin = async (req, res) => {
+  try{
+    const {username, password} = req.bodyc
+    const user = await User.findOne({username})
+    console.log(user);
+    if(!user) {
+      return res.status(491).json({
+        success: false,
+        message: "Username is invalid"
+      })
+
+    }
+    const passwordMatch = await bcrypt.compare(password , user.password)
+    if(!passwordMatch){
+      return res.status(401).json({
+        success: false,
+        message: "Username or password is invalid"
+      })
+    }
+    const token = jwt.sign({username: user.username}, 'secret')
+    return
+  }
+};
+
 module.exports = {
   CreateUser,
   GetUser,
@@ -168,6 +195,4 @@ module.exports = {
   deleteUser,
 };
 
-
-
-// homework car qoshiladon create yani post qilib kelish 
+// homework car qoshiladon create yani post qilib kelish
