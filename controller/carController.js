@@ -78,7 +78,35 @@ const GetCar = async (req, res) => {
 };
 
 
+// getCarByID
+const GetCarByID = async (req, res) => { 
+  try {
+    const { id } = req.params;
+    const car = await Car.findById(id);
+    if (!car) {
+      return res.status(404).json({
+        success: false,
+        message: "Car topilmadi",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Car muvaffaqiyatli topildi",
+      innerData: car,
+    });
+  } catch (error) {
+    console.log("error user by id", error);
+    res.status(500).json({
+      success: false,
+      message: "Car olishda xato yuz berdi",
+    });
+  }
+}
+
+
 module.exports = {
   CreateCar,
   GetCar,   
+  GetCarByID
 };
