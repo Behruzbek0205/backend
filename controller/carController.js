@@ -77,9 +77,8 @@ const GetCar = async (req, res) => {
   }
 };
 
-
 // getCarByID
-const GetCarByID = async (req, res) => { 
+const GetCarByID = async (req, res) => {
   try {
     const { id } = req.params;
     const car = await Car.findById(id);
@@ -102,16 +101,40 @@ const GetCarByID = async (req, res) => {
       message: "Car olishda xato yuz berdi",
     });
   }
-}
+};
 //  Update car
 const updateCar = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, model, discription, color, horsePower, carType, charging, weight, gasoline, yearMachine, price } = req.body;
+    const {
+      title,
+      model,
+      discription,
+      color,
+      horsePower,
+      carType,
+      charging,
+      weight,
+      gasoline,
+      yearMachine,
+      price,
+    } = req.body;
 
     const updateCar = await Car.findByIdAndUpdate(
       id,
-      { title, model, discription, color, horsePower, carType, charging, weight, gasoline, yearMachine, price },
+      {
+        title,
+        model,
+        discription,
+        color,
+        horsePower,
+        carType,
+        charging,
+        weight,
+        gasoline,
+        yearMachine,
+        price,
+      },
       { new: true }
     );
     if (!updateCar) {
@@ -134,11 +157,38 @@ const updateCar = async (req, res) => {
     });
   }
 };
+// delete car
 
+const deleteCar = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deleteCar = await Car.findByIdAndDelete(id);
+    if (!deleteCar) {
+      return res.status(404).json({
+        success: false,
+        message: "Car not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Car deleted seccesfully",
+      car: deleteCar,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 
 module.exports = {
   CreateCar,
-  GetCar,   
+  GetCar,
   GetCarByID,
   updateCar,
+  deleteCar,
 };
