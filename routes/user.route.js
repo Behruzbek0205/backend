@@ -15,6 +15,6 @@ userRoute.get("/GetUser", GetUser);
 userRoute.get("/GetUserById/:id", GetUserById);
 userRoute.put("/updateUser/:id", updateUser);
 userRoute.delete("/deleteUser/:id", deleteUser)
-userRoute.post("/postLogin", postLogin);
+userRoute.post("/postLcarogin", postLogin);
 userRoute.get("/userSearch", userSearch);
 module.exports = { userRoute };

@@ -1,6 +1,7 @@
 const { Car } = require("../models/carSheme");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { model } = require("mongoose");
 
 const CreateCar = async (req, res) => {
   try {
@@ -16,7 +17,7 @@ const CreateCar = async (req, res) => {
       gasoline,
       yearMachine,
       price,
-      seria
+      seria,
     } = req.body;
 
     if (!title || !model) {
@@ -224,6 +225,39 @@ const Carlogin = async (req, res) => {
   }
 };
 
+// carSearch
+
+const carSearch = async (req, res) => {
+  try {
+    const { query } = req.query;
+    if (!query || typeof query !== "string") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid search query",
+      });
+    }
+    const result = await Car.find({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { model: { $regex: query, $options: "i" } },
+        { carType: { $regex: query, $options: "i" } },
+      ],
+    });
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "No cars found matching the query",
+      });
+    }
+    res.json(result);
+  } catch (error) {
+    console.log("Error fetching user", error);
+    res.status(500).json({
+      message: "Server error: Failed to fetch car"
+    })
+  }
+};
+
 module.exports = {
   CreateCar,
   GetCar,
@@ -231,4 +265,5 @@ module.exports = {
   updateCar,
   deleteCar,
   Carlogin,
+  carSearch
 };
