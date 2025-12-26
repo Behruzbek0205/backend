@@ -207,7 +207,7 @@ const Carlogin = async (req, res) => {
         message: "Title or model is invalid",
       });
     }
-    const token = jwt.sign({ discription: car.discription }, "sir");
+    const token = jwt.sign({ title: car.title }, "sir");
     return res.json({ message: "Token", token: token });
   } catch (error) {
     res.status(500).json({
