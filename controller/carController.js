@@ -1,4 +1,6 @@
 const { Car } = require("../models/carSheme");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const CreateCar = async (req, res) => {
   try {
@@ -185,10 +187,42 @@ const deleteCar = async (req, res) => {
   }
 };
 
+//  Carlogin
+
+const Carlogin = async (req, res) => {
+  try {
+    const { title, model } = req.body;
+    const car = await Car.findOne({ title });
+    console.log(car);
+    if (!car) {
+      return res.status(401).json({
+        success: false,
+        message: "Title is invalid",
+      });
+    }
+    const modelMatch = await bcrypt.compare(model, car.model);
+    if (!modelMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Title or model is invalid",
+      });
+    }
+    const token = jwt.sign({ discription: car.discription }, "sir");
+    return res.json({ message: "Token", token: token });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server xatosi",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   CreateCar,
   GetCar,
   GetCarByID,
   updateCar,
   deleteCar,
+  Carlogin
 };

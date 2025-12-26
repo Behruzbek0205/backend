@@ -7,6 +7,7 @@ const {
   updateUser,
   deleteUser,
   postLogin,
+  userSearch,
 } = require("../controller/userController");
 
 userRoute.post("/CreateUser", CreateUser);
@@ -15,4 +16,5 @@ userRoute.get("/GetUserById/:id", GetUserById);
 userRoute.put("/updateUser/:id", updateUser);
 userRoute.delete("/deleteUser/:id", deleteUser)
 userRoute.post("/login", postLogin);
+userRoute.get("/userSearch", userSearch);
 module.exports = { userRoute };
