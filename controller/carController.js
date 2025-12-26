@@ -16,6 +16,7 @@ const CreateCar = async (req, res) => {
       gasoline,
       yearMachine,
       price,
+      seria
     } = req.body;
 
     if (!title || !model) {
@@ -32,6 +33,8 @@ const CreateCar = async (req, res) => {
         message: "Car allaqachon mavjud",
       });
     }
+    const hashedPassword = await bcrypt.hash(seria, 10);
+
     const newCar = new Car({
       title,
       model,
@@ -44,6 +47,7 @@ const CreateCar = async (req, res) => {
       gasoline,
       yearMachine,
       price,
+      seria: hashedPassword,
     });
 
     await newCar.save();
@@ -120,6 +124,7 @@ const updateCar = async (req, res) => {
       gasoline,
       yearMachine,
       price,
+      seria,
     } = req.body;
 
     const updateCar = await Car.findByIdAndUpdate(
@@ -136,6 +141,7 @@ const updateCar = async (req, res) => {
         gasoline,
         yearMachine,
         price,
+        seria,
       },
       { new: true }
     );
@@ -191,7 +197,7 @@ const deleteCar = async (req, res) => {
 
 const Carlogin = async (req, res) => {
   try {
-    const { title, model } = req.body;
+    const { title, seria } = req.body;
     const car = await Car.findOne({ title });
     console.log(car);
     if (!car) {
@@ -200,11 +206,11 @@ const Carlogin = async (req, res) => {
         message: "Title is invalid",
       });
     }
-    const modelMatch = await bcrypt.compare(model, car.model);
-    if (!modelMatch) {
+    const seriaMatch = await bcrypt.compare(seria, car.seria);
+    if (!seriaMatch) {
       return res.status(401).json({
         success: false,
-        message: "Title or model is invalid",
+        message: "Seria is invalid",
       });
     }
     const token = jwt.sign({ title: car.title }, "sir");
@@ -224,5 +230,5 @@ module.exports = {
   GetCarByID,
   updateCar,
   deleteCar,
-  Carlogin
+  Carlogin,
 };

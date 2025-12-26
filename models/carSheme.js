@@ -13,9 +13,8 @@ const carSheme = new Schema({
   gasoline: { type: String, required: true },
   yearMachine: { type: String, required: true },
   price: { type: Number, required: true },
+  seria: { type: String, required: true },
 });
 
 const Car = mongoose.model("Car", carSheme);
-module.exports = { Car }
-
-
+module.exports = { Car };
