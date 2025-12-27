@@ -62,8 +62,34 @@ const EduGet = async (req, res) => {
   }
 };
 
-// 
+// Get Edu By Id
+const eduGetId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const edu = await Edu.findById(id);
+
+    if (!edu) {
+      return res.status(400).json({
+        success: false,
+        message: "Edu center topilmadi",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Edu centerlar muvaffaqiyatli topildi",
+      innerData: edu,
+    });
+  } catch (error) {
+    console.log("error edu by id" , error);
+    res.status(500).json({
+        success: false,
+        message: "Edu centerlar olishda hatolik yuz berdi"
+    })
+  }
+};
 module.exports = {
   eduCreate,
   EduGet,
+  eduGetId
 };
