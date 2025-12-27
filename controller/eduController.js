@@ -121,9 +121,40 @@ const updateEdu = async (req, res) => {
   }
 };
 
+//  deleteEdu
+
+const deleteEdu = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deleteEdu = await Edu.findByIdAndDelete(id);
+    if (!deleteEdu) {
+      return res.status(404).json({
+        success: false,
+        message: "Car not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Car deleted seccesfully",
+      edu: deleteEdu,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+
+
 module.exports = {
   eduCreate,
   EduGet,
   eduGetId,
-  updateEdu
+  updateEdu,
+  deleteEdu
 };
