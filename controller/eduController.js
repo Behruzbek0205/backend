@@ -149,12 +149,44 @@ const deleteEdu = async (req, res) => {
   }
 };
 
+// eduSearch
 
+const eduSearch = async (req, res) => {
+  try {
+    const { query } = req.query;
+    if (!query || typeof query !== "string") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid search query",
+      });
+    }
+    const result = await Edu.find({
+      $or: [
+        { city: { $regex: query, $options: "i" } },
+        { center_name: { $regex: query, $options: "i" } },
+        { street: { $regex: query, $options: "i" } },
+      ],
+    });
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "No edu center found matching the query",
+      });
+    }
+    res.json(result);
+  } catch (error) {
+    console.log("Error fetching user", error);
+    res.status(500).json({
+      message: "Server error: Failed to fetch edu"
+    })
+  }
+};
 
 module.exports = {
   eduCreate,
   EduGet,
   eduGetId,
   updateEdu,
-  deleteEdu
+  deleteEdu,
+  eduSearch
 };
