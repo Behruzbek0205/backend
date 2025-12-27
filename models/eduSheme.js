@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, default: mongoose, model } = require("mongoose");
 const eduScheme = new Schema({
   city: {
     type: String,
@@ -19,3 +19,5 @@ const eduScheme = new Schema({
     type: Number,
   },
 });
+const Edu = mongoose.model("Edu", eduScheme);
+model.exports = { Edu };
