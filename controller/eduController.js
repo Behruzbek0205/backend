@@ -81,15 +81,49 @@ const eduGetId = async (req, res) => {
       innerData: edu,
     });
   } catch (error) {
-    console.log("error edu by id" , error);
+    console.log("error edu by id", error);
     res.status(500).json({
-        success: false,
-        message: "Edu centerlar olishda hatolik yuz berdi"
-    })
+      success: false,
+      message: "Edu centerlar olishda hatolik yuz berdi",
+    });
   }
 };
+
+//  Update Edu
+
+const updateEdu = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { city, center_name, street, rating, branch } = req.body;
+
+    const updateEdu = await Edu.findByIdAndUpdate(
+      id,
+      { city, center_name, street, branch, rating },
+      { new: true }
+    );
+    if (!updateEdu) {
+      return res.status(404).json({
+        success: false,
+        message: "Edu center not found",
+      });
+    }
+    res.json({
+      success: true,
+      message: "Edu update seccesfully",
+      user: updateEdu,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   eduCreate,
   EduGet,
-  eduGetId
+  eduGetId,
+  updateEdu
 };
