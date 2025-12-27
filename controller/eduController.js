@@ -42,3 +42,7 @@ const eduCreate = async (req, res) => {
     });
   }
 };
+
+module.exports = {
+    eduCreate
+}
