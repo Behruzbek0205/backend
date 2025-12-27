@@ -43,6 +43,27 @@ const eduCreate = async (req, res) => {
   }
 };
 
+//  EduGet
+
+const EduGet = async (req, res) => {
+  try {
+    const edu = await Edu.find();
+
+    res.json({
+      success: true,
+      message: "Barcha edu royxati",
+      data: edu,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Edularni olishda xatolik",
+    });
+  }
+};
+
+// 
 module.exports = {
-    eduCreate
-}
+  eduCreate,
+  EduGet,
+};
