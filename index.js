@@ -22,18 +22,16 @@ const ConnecttionToDB = async () => {
 
 ConnecttionToDB();
 
-
-
-
 const { userRoute } = require("./routes/user.route");
 index.use("/users", userRoute);
 
 const { carRoute } = require("./routes/car.router");
 index.use("/cars", carRoute);
 
+const { eduRoute } = require("./routes/edu.router");
+index.use("/edu", eduRoute);
 // Port
 const PORT = process.env.PORT || 3000;
 index.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
-
