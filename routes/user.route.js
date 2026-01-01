@@ -10,11 +10,35 @@ const {
   userSearch,
 } = require("../controller/userController");
 
-userRoute.post("/CreateUser", CreateUser);
+const {
+  registerValidationScheme,
+  updateUserValidationScheme,
+} = require("../validation/userValidation");
+
+
+const validationScheme = (sheme) => (req, res, next) => {
+  const {error} = sheme.validate(req.body)
+  if(error) {
+    return res.status(400).send(error.details[0].message)
+  }
+  next()
+}
+
+
+
+userRoute.post(
+  "/CreateUser",
+  validationScheme(registerValidationScheme),
+  CreateUser
+);
 userRoute.get("/GetUser", GetUser);
 userRoute.get("/GetUserById/:id", GetUserById);
-userRoute.put("/updateUser/:id", updateUser);
-userRoute.delete("/deleteUser/:id", deleteUser)
+userRoute.put(
+  "/updateUser/:id",
+  validationScheme(updateUserValidationScheme),
+  updateUser
+);
+userRoute.delete("/deleteUser/:id", deleteUser);
 userRoute.post("/postLcarogin", postLogin);
 userRoute.get("/userSearch", userSearch);
 module.exports = { userRoute };

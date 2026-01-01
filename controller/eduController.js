@@ -177,8 +177,8 @@ const eduSearch = async (req, res) => {
   } catch (error) {
     console.log("Error fetching user", error);
     res.status(500).json({
-      message: "Server error: Failed to fetch edu"
-    })
+      message: "Server error: Failed to fetch edu",
+    });
   }
 };
 
@@ -188,5 +188,5 @@ module.exports = {
   eduGetId,
   updateEdu,
   deleteEdu,
-  eduSearch
+  eduSearch,
 };
