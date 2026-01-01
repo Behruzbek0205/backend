@@ -82,8 +82,103 @@ const houseGetByID = async (req, res) => {
   }
 };
 
+//  update House
+const updateHouse = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { region, city, house_number, street, family_members, location } =
+      req.body;
+
+    const updateHouse = await House.findByIdAndUpdate(
+      id,
+      { region, city, house_number, street, family_members, location },
+      { new: true }
+    );
+    if (!updateHouse) {
+      return res.status(404).json({
+        success: false,
+        message: "House center not found",
+      });
+    }
+    res.json({
+      success: true,
+      message: "house update seccesfully",
+      user: updateHouse,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+// house delete
+const deleteHouse = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deleteHouse = await House.findByIdAndDelete(id);
+    if (!deleteHouse) {
+      return res.status(404).json({
+        success: false,
+        message: "House not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "house deleted seccesfully",
+      house: deleteHouse,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+// HouseSearch
+
+const houseSearch = async (req, res) => {
+  try {
+    const { query } = req.query;
+    if (!query || typeof query !== "string") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid search query",
+      });
+    }
+    const result = await House.find({
+      $or: [
+        { city: { $regex: query, $options: "i" } },
+        { region: { $regex: query, $options: "i" } },
+        { street: { $regex: query, $options: "i" } },
+      ],
+    });
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "No House found matching the query",
+      });
+    }
+    res.json(result);
+  } catch (error) {
+    console.log("Error fetching user", error);
+    res.status(500).json({
+      message: "Server error: Failed to fetch house",
+    });
+  }
+};
+
 module.exports = {
   createHouse,
   houseGet,
-  houseGetByID
+  houseGetByID,
+  updateHouse,
+  deleteHouse,
+  houseSearch,
 };
