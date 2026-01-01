@@ -40,26 +40,50 @@ const createHouse = async (req, res) => {
 
 //houseGet
 const houseGet = async (req, res) => {
-    try{
-        const house = await House.find()
-        res.json({
+  try {
+    const house = await House.find();
+    res.json({
       success: true,
       message: "Barcha edu royxati",
       data: house,
-        })
-    }catch (error) {
-        res.status(500)({
-            success: false,
-            message: "Houselarni olishda hatolik bor"
-        })
-    }
-} 
-
+    });
+  } catch (error) {
+    res.status(500)({
+      success: false,
+      message: "Houselarni olishda hatolik bor",
+    });
+  }
+};
 
 // get house by id
+const houseGetByID = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const house = await House.findById(id);
 
+    if (!house) {
+      return res.status(400).json({
+        success: false,
+        message: "Edu center topilmadi",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "house  muvaffaqiyatli topildi",
+      innerData: house,
+    });
+  } catch (error) {
+    console.log("error edu by id", error);
+    res.status(500).json({
+      success: false,
+      message: "house  olishda hatolik yuz berdi",
+    });
+  }
+};
 
 module.exports = {
   createHouse,
-  houseGet
+  houseGet,
+  houseGetByID
 };
