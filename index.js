@@ -21,7 +21,7 @@ const ConnecttionToDB = async () => {
 };
 
 ConnecttionToDB();
-//  user index 
+//  user index
 
 const { userRoute } = require("./routes/user.route");
 index.use("/users", userRoute);
@@ -35,7 +35,8 @@ const { eduRoute } = require("./routes/edu.router");
 index.use("/edu", eduRoute);
 
 //  house index
-const {}
+const { houseRoute } = require("./routes/house.route");
+index.use("/house", houseRoute);
 
 // Port
 const PORT = process.env.PORT || 3000;
