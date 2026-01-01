@@ -3,22 +3,27 @@ const { House } = require("../models/houseSheme");
 
 const createHouse = async (req, res) => {
   try {
-    const { region, city, house_member, street, family_members, location } =
+    const { region, city, house_number, street, family_members, location } =
       req.body;
-    if (!city || !region) {
+
+    if (!city || !region || !house_number) {
       return res.status(400).json({
         success: false,
-        message: "City va region majburiy",
+        message: "City, region va house_number majburiy",
       });
     }
+
     const newHouse = new House({
+      region,
       city,
-      house_member,
+      house_number,
       street,
       family_members,
       location,
     });
+
     await newHouse.save();
+
     res.status(201).json({
       success: true,
       message: "House muvaffaqiyatli yaratildi",
@@ -34,5 +39,5 @@ const createHouse = async (req, res) => {
 };
 
 module.exports = {
-    createHouse
-}
+  createHouse,
+};

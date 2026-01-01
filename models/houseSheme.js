@@ -1,7 +1,7 @@
-const { required } = require("joi");
-const { Scheme } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const houseScheme = new Scheme({
+const houseScheme = new Schema({
   region: { type: String, required: true },
   city: { type: String, required: true },
   house_number: { type: Number, required: true },
@@ -10,5 +10,6 @@ const houseScheme = new Scheme({
   location: { type: String, required: true },
 });
 
-const House = model("house", houseScheme);
+const House = mongoose.model("House", houseScheme);
+
 module.exports = { House };
