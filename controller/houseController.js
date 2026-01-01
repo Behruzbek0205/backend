@@ -38,6 +38,24 @@ const createHouse = async (req, res) => {
   }
 };
 
+//houseGet
+const houseGet = async (req, res) => {
+    try{
+        const house = await House.find()
+        res.json({
+      success: true,
+      message: "Barcha edu royxati",
+      data: house,
+        })
+    }catch (error) {
+        res.status(500)({
+            success: false,
+            message: "Houselarni olishda hatolik bor"
+        })
+    }
+} 
+
 module.exports = {
   createHouse,
+  houseGet
 };
