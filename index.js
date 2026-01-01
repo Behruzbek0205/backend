@@ -21,15 +21,22 @@ const ConnecttionToDB = async () => {
 };
 
 ConnecttionToDB();
+//  user index 
 
 const { userRoute } = require("./routes/user.route");
 index.use("/users", userRoute);
+//  car index
 
 const { carRoute } = require("./routes/car.router");
 index.use("/cars", carRoute);
+//  education  index
 
 const { eduRoute } = require("./routes/edu.router");
 index.use("/edu", eduRoute);
+
+//  house index
+const {}
+
 // Port
 const PORT = process.env.PORT || 3000;
 index.listen(PORT, () =>
