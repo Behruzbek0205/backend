@@ -55,6 +55,10 @@ const houseGet = async (req, res) => {
     }
 } 
 
+
+// get house by id
+
+
 module.exports = {
   createHouse,
   houseGet
