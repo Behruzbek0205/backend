@@ -14,14 +14,14 @@ const {
   houseupdateValidationshceme,
 } = require("../validation/houseValidation");
 
-const validationScheme = (sheme = (req, res, next) => {
+const validationScheme = (sheme) = (req, res, next) => {
   const { error } = sheme.validate(req.body);
 
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
   next();
-});
+};
 
 houseRoute.post(
   "/houseCreate",
