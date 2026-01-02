@@ -14,10 +14,27 @@ const {
   houseupdateValidationshceme,
 } = require("../validation/houseValidation");
 
-houseRoute.post("/houseCreate", createHouse);
+const validationScheme = (sheme = (req, res, next) => {
+  const { error } = sheme.validate(req.body);
+
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+  }
+  next();
+});
+
+houseRoute.post(
+  "/houseCreate",
+  validationScheme(houseValidationshceme),
+  createHouse
+);
 houseRoute.get("/houseGet", houseGet);
 houseRoute.get("/getHouseById/:id", houseGetByID);
-houseRoute.put("/updateHouse/:id", updateHouse);
+houseRoute.put(
+  "/updateHouse/:id",
+  validationScheme(houseupdateValidationshceme),
+  updateHouse
+);
 houseRoute.delete("/deleteHouse/:id", deleteHouse);
 houseRoute.get("/houseSearch", houseSearch);
 
