@@ -40,7 +40,7 @@ index.use("/house", houseRoute);
 //  product index
 
 const {productRoute} = require('./routes/product.router')
-index.use('/porduct', productRoute)
+index.use('/product', productRoute)
 // Port
 const PORT = process.env.PORT || 3000;
 index.listen(PORT, () =>
