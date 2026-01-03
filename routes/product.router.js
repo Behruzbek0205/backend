@@ -5,9 +5,11 @@ const {
   createProduct,
   getProduct,
   productByID,
+  updateProduct,
 } = require("../controller/productController");
 
 productRoute.post("/productCreate", createProduct);
 productRoute.get("/getProduct", getProduct);
 productRoute.get("/getProductById/:id", productByID);
+productRoute.put("/updateProduct/:id", updateProduct);
 module.exports = { productRoute };
