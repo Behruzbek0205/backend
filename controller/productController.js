@@ -133,8 +133,36 @@ const productDelete = async (req, res) => {
     });
   }
 };
-
-
+// Search product
+const productSearch = async (req, res) => {
+  try {
+    const { query } = req.query;
+    if (!query || typeof query !== "string") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid search query",
+      });
+    }
+    const result = await Product.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { price: { $regex: query, $options: "i" } }
+      ],
+    });
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "No Product found matching the query",
+      });
+    }
+    res.json(result);
+  } catch (error) {
+    console.log("Error fetching product", error);
+    res.status(500).json({
+      message: "Server error: Failed to fetch product",
+    });
+  }
+};
 
 module.exports = {
   createProduct,
@@ -142,4 +170,5 @@ module.exports = {
   productByID,
   updateProduct,
   productDelete,
+  productSearch
 };
