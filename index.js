@@ -37,7 +37,10 @@ index.use("/edu", eduRoute);
 //  house index
 const { houseRoute } = require("./routes/house.route");
 index.use("/house", houseRoute);
+//  product index
 
+const {productRoute} = require('./routes/product.router')
+index.use('/porduct', productRoute)
 // Port
 const PORT = process.env.PORT || 3000;
 index.listen(PORT, () =>
