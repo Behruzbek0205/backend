@@ -1,5 +1,5 @@
 const { Product } = require("../models/productSheme");
-
+//  createProduct
 const createProduct = async (req, res) => {
   try {
     const { name, price, description, image, count } = req.body;
@@ -31,6 +31,25 @@ const createProduct = async (req, res) => {
     });
   }
 };
+
+// getProduct
+const getProduct = async (req, res) => {
+  try {
+    const product = await Product.find();
+    res.json({
+      success: true,
+      message: "Xamma productlar",
+      data: product,
+    });
+  } catch (error) {
+    res.status(500)({
+      success: false,
+      message: "Productlarni olishda hatolik bor",
+    });
+  }
+};
+
 module.exports = {
-    createProduct
-}
+  createProduct,
+  getProduct
+};
