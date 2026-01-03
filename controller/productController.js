@@ -80,12 +80,11 @@ const productByID = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const {name, price, description, image, count } =
-      req.body;
+    const { name, price, description, image, count } = req.body;
 
     const updateProduct = await Product.findByIdAndUpdate(
       id,
-      { name, price, description, image, count  },
+      { name, price, description, image, count },
       { new: true }
     );
     if (!updateProduct) {
@@ -108,9 +107,39 @@ const updateProduct = async (req, res) => {
   }
 };
 
+// porduct delete
+const productDelete = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const productDelete = await Product.findByIdAndDelete(id);
+    if (!productDelete) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Product deleted seccesfully",
+      product: productDelete,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
+
+
 module.exports = {
   createProduct,
   getProduct,
   productByID,
-  updateProduct
+  updateProduct,
+  productDelete,
 };
