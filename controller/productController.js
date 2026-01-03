@@ -146,7 +146,7 @@ const productSearch = async (req, res) => {
     const result = await Product.find({
       $or: [
         { name: { $regex: query, $options: "i" } },
-        { price: { $regex: query, $options: "i" } }
+        { description: { $regex: query, $options: "i" } },
       ],
     });
     if (result.length === 0) {
@@ -170,5 +170,5 @@ module.exports = {
   productByID,
   updateProduct,
   productDelete,
-  productSearch
+  productSearch,
 };
