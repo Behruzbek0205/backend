@@ -64,7 +64,7 @@ const houseGetByID = async (req, res) => {
     if (!house) {
       return res.status(400).json({
         success: false,
-        message: "Edu center topilmadi",
+        message: "house center topilmadi",
       });
     }
 

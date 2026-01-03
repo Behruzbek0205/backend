@@ -49,7 +49,35 @@ const getProduct = async (req, res) => {
   }
 };
 
+// get product by id
+const productByID = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(400).json({
+        success: false,
+        message: "Product topilmadi",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "product  muvaffaqiyatli topildi",
+      innerData: product,
+    });
+  } catch (error) {
+    console.log("error product by id", error);
+    res.status(500).json({
+      success: false,
+      message: "Product  olishda hatolik yuz berdi",
+    });
+  }
+};
+
 module.exports = {
   createProduct,
-  getProduct
+  getProduct,
+  productByID
 };
