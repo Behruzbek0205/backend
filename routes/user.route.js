@@ -22,57 +22,76 @@ const validationScheme = (sheme) => (req, res, next) => {
   }
   next();
 };
+
+
+
 /**
  * @swagger
- * name: Users
- * description:
+ * tags:
+ *   name: Users
+ *   description: Foydalanuvchilar boshqaruvi
  */
 
 /**
  * @swagger
  * /users/CreateUser:
- * post:
- * summary: Yangi foydalanuvchini yaratish
- * tags: [Users]
- * description: Yangi faydalanuvchini yaratish
- * requestBody:
- * reqiured: true
- * content:
- * application/json"
- * shema:
- * type:object
- * properties: 
- * username:
- * type:string
- * description: Foydalanuvchining yagona username
- * password: 
- * type: string
- * description: Foydalanuvchining akkounti uchun parol
- * firstname:
- * type:string
- * description: Foydalanuvchining ismi
- * lastname:
- * type:string
- * description: Foydalanuvchini familiyasi
- * birthday: 
- * type: String
- * description: Foydalanuvchining yili
- * phone: 
- * type:string
- * description: Foydalanuvchining telefon nomerin
- * addres: 
- * type:string
- * description: Foydalanuvchining addressi
- * gender: 
- * type:string 
- * responses:
- * '201':
- * description: Foydalanuvchini muvaffaqiyatli royxatdan otdi
- * '400':
- * description: Yomon sorov, validatsiya xatosi
- * '500':
- * description:Server xatosi
+ *   post:
+ *     summary: Yangi foydalanuvchini yaratish
+ *     tags: [Users]
+ *     description: Yangi foydalanuvchini yaratadi
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Foydalanuvchining yagona username
+ *               password:
+ *                 type: string
+ *                 description: Foydalanuvchining akkaunti uchun parol
+ *               firstname:
+ *                 type: string
+ *                 description: Foydalanuvchining ismi
+ *               lastname:
+ *                 type: string
+ *                 description: Foydalanuvchining familiyasi
+ *               birthday:
+ *                 type: string
+ *                 format: date
+ *                 description: Foydalanuvchining tug‘ilgan sanasi
+ *               phone:
+ *                 type: string
+ *                 description: Foydalanuvchining telefon raqami
+ *               address:
+ *                 type: string
+ *                 description: Foydalanuvchining manzili
+ *               gender:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Foydalanuvchi muvaffaqiyatli yaratildi
+ *       400:
+ *         description: Validatsiya xatosi
+ *       500:
+ *         description: Server xatosi
  */
+
+
+// get user   
+/** 
+ * 
+ * 
+*/
+
+
+
+
 
 userRoute.post(
   "/CreateUser",
