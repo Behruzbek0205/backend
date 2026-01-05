@@ -5,6 +5,8 @@ const cors = require("cors");
 const { connect } = require("mongoose");
 require("dotenv").config();
 
+const {swaggerUI, swaggerSpec} = require('./swagger/Swagger')
+
 const index = express();
 
 index.use(express.json());
@@ -21,6 +23,9 @@ const ConnecttionToDB = async () => {
 };
 
 ConnecttionToDB();
+// swagger-route
+index.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
+
 //  user index
 
 const { userRoute } = require("./routes/user.route");
