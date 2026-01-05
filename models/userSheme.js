@@ -1,4 +1,6 @@
 const { model, Schema } = require("mongoose");
+
+const { Product } = require("./productSheme");
 const userScheme = new Schema({
   username: {
     type: String,
@@ -35,6 +37,7 @@ const userScheme = new Schema({
     enum: ["male", "female"],
     alias: "jinsi",
   },
+  prodcut_id: { type: Schema.Types.ObjectId, ref: Product },
 });
 const User = model("User", userScheme);
 module.exports = { User };
