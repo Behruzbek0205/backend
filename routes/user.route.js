@@ -23,8 +23,6 @@ const validationScheme = (sheme) => (req, res, next) => {
   next();
 };
 
-
-
 /**
  * @swagger
  * tags:
@@ -82,16 +80,22 @@ const validationScheme = (sheme) => (req, res, next) => {
  *         description: Server xatosi
  */
 
-
-// get user   
+// get user
 /** 
- * 
- * 
+ * @swagger
+ * /users/GetUser:
+ * get:
+ *    summary: Hamma foydalanuvchilarni olish
+ *    tags: [Users]
+ *    description: Foydalanuvchilarni olish
+ *    responses:
+ *      "200":
+ *         description:   Hamma foydalanuvchilarni royxati
+ *      "500":
+ *         description:  ichki server xatosi
+
+
 */
-
-
-
-
 
 userRoute.post(
   "/CreateUser",

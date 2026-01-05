@@ -15,7 +15,7 @@ index.use(cors());
 // MongoDB ulanish
 const ConnecttionToDB = async () => {
   try {
-    await connect(process.env.MONGO_URL || "");
+    await connect(process.env.MONGO_URL || "" );
     console.log("MongoDB connected");
   } catch (error) {
     console.log("MongoDB connection error:", error.message);
