@@ -84,7 +84,7 @@ const validationScheme = (sheme) => (req, res, next) => {
 /** 
  * @swagger
  * /users/GetUser:
- * get:
+ *   get:
  *    summary: Hamma foydalanuvchilarni olish
  *    tags: [Users]
  *    description: Foydalanuvchilarni olish
