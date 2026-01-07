@@ -109,31 +109,35 @@ userRoute.get("/GetUserById/:id", GetUserById);
 /**
  * @swagger
  * /users/GetUserById/{id}:
- *  get:
- *    summary: foydalanuvchi alohida olish
- *    tags: [Users]
- *    description: foydalanuvchi alohida olish
- *     parametrs:
- *        - in: path
- *           name: id
- *           description: user id
- *           schema:
- *              type: string
- *           reqiured: true
+ *   get:
+ *     summary: Foydalanuvchini ID orqali olish
+ *     tags: [Users]
+ *     description: ID orqali bitta foydalanuvchini qaytaradi
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Foydalanuvchi ID si
+ *         schema:
+ *           type: string
  *     responses:
- *        "200":
- *          description: foydalanuvhci topildi
- *        "404"
- *          description: foydalanuvhci topilmadi
- *        "500"
- *          description: server xatosi 
-*/
+ *       200:
+ *         description: Foydalanuvchi topildi
+ *       404:
+ *         description: Foydalanuvchi topilmadi
+ *       500:
+ *         description: Server xatosi
+ */
 
 userRoute.put(
   "/updateUser/:id",
   validationScheme(updateUserValidationScheme),
   updateUser
 );
+
+
+
+
 userRoute.delete("/deleteUser/:id", deleteUser);
 userRoute.post("/postLcarogin", postLogin);
 userRoute.get("/userSearch", userSearch);
