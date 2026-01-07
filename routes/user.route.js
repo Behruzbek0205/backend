@@ -137,9 +137,9 @@ userRoute.put(
 
 /**
  * @swagger
- * /users/updateUser/:id:
+ * /users/updateUser/{id}:
  *   put:
- *     summary: Foydalanuvchini ID orqali olish
+ *     summary: Foydalanuvchini ID orqali yangilash
  *     tags: [Users]
  *     description: ID orqali bitta foydalanuvchini yangilash
  *     parameters:
@@ -152,29 +152,58 @@ userRoute.put(
  *     requestBody:
  *       required: true
  *       content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                 username:
- *                    type: string
- *                    description: Foydalanuvchi yagona username
- *                 lastname:
- *                    type: string
- *                    description: Foydalanuvchining familiyasi
- *                 phone:
- *                    type: string
- *                     description: Foydalanuvchining telefon raqami
- *                 address:
- *                    type: string
- *                    description: Foydalanuvchining manzili
- *              required:
- *                - username
- *                - password
- *    
- */  
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Foydalanuvchi yagona username
+ *               lastname:
+ *                 type: string
+ *                 description: Foydalanuvchining familiyasi
+ *               phone:
+ *                 type: string
+ *                 description: Foydalanuvchining telefon raqami
+ *               address:
+ *                 type: string
+ *                 description: Foydalanuvchining manzili
+ *             required:
+ *               - username
+ *     responses:
+ *       200:
+ *         description: Foydalanuvchi muvaffaqiyatli yangilandi
+ *       404:
+ *         description: Foydalanuvchi topilmadi
+ *       500:
+ *         description: Server xatosi
+ */
 
 userRoute.delete("/deleteUser/:id", deleteUser);
+
+/**
+ * @swagger
+ * /users/deleteUser/{id}:
+ *   delete:
+ *     summary: Foydalanuvchini ID orqali ochirish
+ *     tags: [Users]
+ *     description: Foydalanuvchini ID orqali ochirish
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Foydalanuvchi ID si
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Foydalanuvchi topildi
+ *       404:
+ *         description: Foydalanuvchi topilmadi
+ *       500:
+ *         description: Server xatosi
+ */
+
 userRoute.post("/postLcarogin", postLogin);
 userRoute.get("/userSearch", userSearch);
 module.exports = { userRoute };
