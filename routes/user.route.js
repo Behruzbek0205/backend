@@ -30,6 +30,11 @@ const validationScheme = (sheme) => (req, res, next) => {
  *   description: Foydalanuvchilar boshqaruvi
  */
 
+userRoute.post(
+  "/CreateUser",
+  validationScheme(registerValidationScheme),
+  CreateUser
+);
 /**
  * @swagger
  * /users/CreateUser:
@@ -80,6 +85,8 @@ const validationScheme = (sheme) => (req, res, next) => {
  *         description: Server xatosi
  */
 
+userRoute.get("/GetUser", GetUser);
+
 // get user
 /** 
  * @swagger
@@ -97,13 +104,31 @@ const validationScheme = (sheme) => (req, res, next) => {
 
 */
 
-userRoute.post(
-  "/CreateUser",
-  validationScheme(registerValidationScheme),
-  CreateUser
-);
-userRoute.get("/GetUser", GetUser);
 userRoute.get("/GetUserById/:id", GetUserById);
+
+/**
+ * @swagger
+ * /users/GetUserById/{id}:
+ *  get:
+ *    summary: foydalanuvchi alohida olish
+ *    tags: [Users]
+ *    description: foydalanuvchi alohida olish
+ *     parametrs:
+ *        - in: path
+ *           name: id
+ *           description: user id
+ *           schema:
+ *              type: string
+ *           reqiured: true
+ *     responses:
+ *        "200":
+ *          description: foydalanuvhci topildi
+ *        "404"
+ *          description: foydalanuvhci topilmadi
+ *        "500"
+ *          description: server xatosi 
+*/
+
 userRoute.put(
   "/updateUser/:id",
   validationScheme(updateUserValidationScheme),
