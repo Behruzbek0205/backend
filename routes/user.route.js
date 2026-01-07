@@ -134,9 +134,49 @@ userRoute.put(
   validationScheme(updateUserValidationScheme),
   updateUser
 );
-
-
-
+/**
+ * @swagger
+ * /users/updateUser/{id}:
+ *   put:
+ *     summary: Foydalanuvchini ID orqali yangilash
+ *     tags: [Users]
+ *     description: ID orqali bitta foydalanuvchini yangilash
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Foydalanuvchi ID si
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Foydalanuvchi yagona username
+ *               lastname:
+ *                 type: string
+ *                 description: Foydalanuvchining familiyasi
+ *               phone:
+ *                 type: string
+ *                 description: Foydalanuvchining telefon raqami
+ *               address:
+ *                 type: string
+ *                 description: Foydalanuvchining manzili
+ *             required:
+ *               - username
+ *     responses:
+ *       200:
+ *         description: Foydalanuvchi muvaffaqiyatli yangilandi
+ *       404:
+ *         description: Foydalanuvchi topilmadi
+ *       500:
+ *         description: Server xatosi
+ */
 
 userRoute.delete("/deleteUser/:id", deleteUser);
 userRoute.post("/postLcarogin", postLogin);
