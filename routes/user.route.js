@@ -134,11 +134,12 @@ userRoute.put(
   validationScheme(updateUserValidationScheme),
   updateUser
 );
+
 /**
  * @swagger
- * /users/updateUser/{id}:
+ * /users/updateUser/:id:
  *   put:
- *     summary: Foydalanuvchini ID orqali yangilash
+ *     summary: Foydalanuvchini ID orqali olish
  *     tags: [Users]
  *     description: ID orqali bitta foydalanuvchini yangilash
  *     parameters:
@@ -151,32 +152,27 @@ userRoute.put(
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *                 description: Foydalanuvchi yagona username
- *               lastname:
- *                 type: string
- *                 description: Foydalanuvchining familiyasi
- *               phone:
- *                 type: string
- *                 description: Foydalanuvchining telefon raqami
- *               address:
- *                 type: string
- *                 description: Foydalanuvchining manzili
- *             required:
- *               - username
- *     responses:
- *       200:
- *         description: Foydalanuvchi muvaffaqiyatli yangilandi
- *       404:
- *         description: Foydalanuvchi topilmadi
- *       500:
- *         description: Server xatosi
- */
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                 username:
+ *                    type: string
+ *                    description: Foydalanuvchi yagona username
+ *                 lastname:
+ *                    type: string
+ *                    description: Foydalanuvchining familiyasi
+ *                 phone:
+ *                    type: string
+ *                     description: Foydalanuvchining telefon raqami
+ *                 address:
+ *                    type: string
+ *                    description: Foydalanuvchining manzili
+ *              required:
+ *                - username
+ *                - password
+ *    
+ */  
 
 userRoute.delete("/deleteUser/:id", deleteUser);
 userRoute.post("/postLcarogin", postLogin);
