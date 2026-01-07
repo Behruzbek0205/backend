@@ -204,6 +204,7 @@ userRoute.delete("/deleteUser/:id", deleteUser);
  *         description: Server xatosi
  */
 
-userRoute.post("/postLcarogin", postLogin);
+userRoute.post("/postLogin", postLogin);
+
 userRoute.get("/userSearch", userSearch);
 module.exports = { userRoute };
