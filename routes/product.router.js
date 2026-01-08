@@ -12,9 +12,8 @@ const {
 
 const {
   productValidationshceme,
-  productupdateValidationshceme
+  productupdateValidationshceme,
 } = require("../validation/productValidation");
-
 
 const validationScheme = (scheme) => (req, res, next) => {
   const { error } = scheme.validate(req.body);
@@ -24,7 +23,6 @@ const validationScheme = (scheme) => (req, res, next) => {
   next();
 };
 
-
 /**
  * @swagger
  * tags:
@@ -32,15 +30,60 @@ const validationScheme = (scheme) => (req, res, next) => {
  *   description: Productni boshqaruvi
  */
 
+productRoute.post(
+  "/productCreate",
+  validationScheme(productValidationshceme),
+  createProduct
+);
 
-productRoute.post("/productCreate", validationScheme(productValidationshceme), createProduct);
-
-
-
+/**
+ * @swagger
+ * /product/productCreate:
+ *   post:
+ *     summary: Yangi product yaratish
+ *     tags: [Prodcut]
+ *     description: Yangi product yaratadi
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - count
+ *              properties:
+ *                name:
+ *                  type: string
+ *                  description: Porduct yagona name
+ *                price:
+ *                  type: string
+ *                  description: Porductning narxi
+ *                description:
+ *                  type: string
+ *                  description: Porductning tarifi
+ *                image:
+ *                  type: string
+ *                  description: Porductning rasmi
+ *                 count:
+ *                  type: string
+ *                  description: Porductning nechtaligi
+ *     responses:
+ *       201:
+ *         description: Product muvaffaqiyatli yaratildi
+ *       400:
+ *         description: Validatsiya xatosi
+ *       500:
+ *         description: Server xatosi
+ */
 
 productRoute.get("/getProduct", getProduct);
 productRoute.get("/getProductById/:id", productByID);
-productRoute.put("/updateProduct/:id",validationScheme(productupdateValidationshceme),  updateProduct);
+productRoute.put(
+  "/updateProduct/:id",
+  validationScheme(productupdateValidationshceme),
+  updateProduct
+);
 productRoute.delete("/deleteProduct/:id", productDelete);
-productRoute.get("/productSearch", productSearch)
+productRoute.get("/productSearch", productSearch);
 module.exports = { productRoute };
