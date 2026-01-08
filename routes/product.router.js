@@ -119,6 +119,43 @@ productRoute.put(
   validationScheme(productupdateValidationshceme),
   updateProduct
 );
+
+/**
+ * @swagger
+ * /product/updateProduct/{id}:
+ *   put:
+ *     summary: Productni yangilash
+ *     tags: [Product]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               description:
+ *                 type: string
+ *               image:
+ *                 type: string
+ *               count:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Product yangilandi
+ *       400:
+ *         description: Validatsiya xatosi
+ */
+
 productRoute.delete("/deleteProduct/:id", productDelete);
 productRoute.get("/productSearch", productSearch);
 module.exports = { productRoute };
