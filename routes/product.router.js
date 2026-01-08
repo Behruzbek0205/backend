@@ -94,6 +94,26 @@ productRoute.get("/getProduct", getProduct);
  */
 
 productRoute.get("/getProductById/:id", productByID);
+
+/**
+ * @swagger
+ * /product/getProductById/{id}:
+ *   get:
+ *     summary: Productni ID orqali olish
+ *     tags: [Product]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Topilgan product
+ *       404:
+ *         description: Product topilmadi
+ */
+
 productRoute.put(
   "/updateProduct/:id",
   validationScheme(productupdateValidationshceme),
