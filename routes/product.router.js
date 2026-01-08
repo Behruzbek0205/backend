@@ -41,7 +41,7 @@ productRoute.post(
  * /product/productCreate:
  *   post:
  *     summary: Yangi product yaratish
- *     tags: [Prodcut]
+ *     tags: [Product]
  *     description: Yangi product yaratadi
  *     requestBody:
  *       required: true
@@ -51,23 +51,24 @@ productRoute.post(
  *             type: object
  *             required:
  *               - name
+ *               - price
  *               - count
- *              properties:
- *                name:
- *                  type: string
- *                  description: Porduct yagona name
- *                price:
- *                  type: string
- *                  description: Porductning narxi
- *                description:
- *                  type: string
- *                  description: Porductning tarifi
- *                image:
- *                  type: string
- *                  description: Porductning rasmi
- *                 count:
- *                  type: string
- *                  description: Porductning nechtaligi
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Iphone 15
+ *               price:
+ *                 type: number
+ *                 example: 1200
+ *               description:
+ *                 type: string
+ *                 example: Apple smartfoni
+ *               image:
+ *                 type: string
+ *                 example: iphone.jpg
+ *               count:
+ *                 type: number
+ *                 example: 10
  *     responses:
  *       201:
  *         description: Product muvaffaqiyatli yaratildi
@@ -76,8 +77,22 @@ productRoute.post(
  *       500:
  *         description: Server xatosi
  */
-
 productRoute.get("/getProduct", getProduct);
+
+/**
+ * @swagger
+ * /product/getProduct:
+ *   get:
+ *     summary: Barcha productlarni olish
+ *     tags: [Product]
+ *     description: Porductlarni olish
+ *     responses:
+ *       200:
+ *         description: Productlar ro‘yxati
+ *       500:
+ *         description: Server xatosi
+ */
+
 productRoute.get("/getProductById/:id", productByID);
 productRoute.put(
   "/updateProduct/:id",
