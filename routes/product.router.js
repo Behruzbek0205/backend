@@ -25,7 +25,19 @@ const validationScheme = (scheme) => (req, res, next) => {
 };
 
 
+/**
+ * @swagger
+ * tags:
+ *   name: Product
+ *   description: Productni boshqaruvi
+ */
+
+
 productRoute.post("/productCreate", validationScheme(productValidationshceme), createProduct);
+
+
+
+
 productRoute.get("/getProduct", getProduct);
 productRoute.get("/getProductById/:id", productByID);
 productRoute.put("/updateProduct/:id",validationScheme(productupdateValidationshceme),  updateProduct);

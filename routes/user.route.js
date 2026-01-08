@@ -207,4 +207,29 @@ userRoute.delete("/deleteUser/:id", deleteUser);
 userRoute.post("/postLogin", postLogin);
 
 userRoute.get("/userSearch", userSearch);
+
+/**
+ * @swagger
+ * /users/userSearch:
+ *   get:
+ *     summary: Foydalanuvchini qidirish
+ *     tags: [Users]
+ *     description: Foydalanuvchini qidirish
+ *     parameters:
+ *       - in: query
+ *         name: query
+ *         required: true
+ *         description: Qidiruv (username , firstname , lastname)
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Foydalanuvchi topildi
+ *       404:
+ *         description: Foydalanuvchi topilmadi
+ *       500:
+ *         description: Server xatosi
+ */
+
+
 module.exports = { userRoute };
