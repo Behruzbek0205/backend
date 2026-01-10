@@ -157,5 +157,25 @@ productRoute.put(
  */
 
 productRoute.delete("/deleteProduct/:id", productDelete);
+
+/**
+ * @swagger
+ * /product/deleteProduct/{id}:
+ *   delete:
+ *     summary: Productni o‘chirish
+ *     tags: [Product]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Product o‘chirildi
+ *       404:
+ *         description: Product topilmadi
+ */
+
 productRoute.get("/productSearch", productSearch);
 module.exports = { productRoute };
