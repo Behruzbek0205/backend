@@ -200,23 +200,3 @@ productRoute.get("/productSearch", productSearch);
  */
 
 module.exports = { productRoute };
-
-// /
-//  * @swagger
-//  * /product/productSearch:
-//  *   get:
-//  *     summary: Product qidirish
-//  *     tags: [Product]
-//  *     parameters:
-//  *       - in: query
-//  *         name: query
-//  *         required: true
-//  *         schema:
-//  *           type: string
-//  *         example: iphone
-//  *     responses:
-//  *       200:
-//  *         description: Qidiruv natijalari
-//  *       500:
-//  *         description: Server xatosi
-//  */
