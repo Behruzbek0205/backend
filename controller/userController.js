@@ -225,14 +225,14 @@ const userSearch = async (req, res) => {
   }
 };
 
-module.exports = {
-  CreateUser,
-  GetUser,
-  GetUserById,
-  updateUser,
-  deleteUser,
-  postLogin,
-  userSearch,
-};
+    module.exports = {
+      CreateUser,
+      GetUser,
+      GetUserById,
+      updateUser,
+      deleteUser,
+      postLogin,
+      userSearch,
+    };
 
 // homework car qoshiladon create yani post qilib kelish
