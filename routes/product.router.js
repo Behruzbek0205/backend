@@ -178,4 +178,45 @@ productRoute.delete("/deleteProduct/:id", productDelete);
  */
 
 productRoute.get("/productSearch", productSearch);
+
+/**
+ * @swagger
+ * /product/productSearch:
+ *    get:
+ *      summary: Prodcut qidirish
+ *      tags: [Product]
+ *      parameters:
+ *        - in: query
+ *          name: query
+ *          required: true
+ *          schema:
+ *            type: string
+ *          example: nok
+ *      responses:
+ *        200:
+ *          description: Qidiruv natijalari
+ *        500:
+ *          description: Servar xatosi
+ */
+
 module.exports = { productRoute };
+
+// /
+//  * @swagger
+//  * /product/productSearch:
+//  *   get:
+//  *     summary: Product qidirish
+//  *     tags: [Product]
+//  *     parameters:
+//  *       - in: query
+//  *         name: query
+//  *         required: true
+//  *         schema:
+//  *           type: string
+//  *         example: iphone
+//  *     responses:
+//  *       200:
+//  *         description: Qidiruv natijalari
+//  *       500:
+//  *         description: Server xatosi
+//  */
