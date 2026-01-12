@@ -96,35 +96,10 @@ eduRoute.put("/updateEdu/:id", updateEdu);
 
 /**
  * @swagger
- * /product/getProductById/{id}:
- *   get:
- *     summary: Productni ID orqali olish
- *     tags: [Product]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Topilgan product
- *       404:
- *         description: Product topilmadi
- */
-
-productRoute.put(
-  "/updateProduct/:id",
-  validationScheme(productupdateValidationshceme),
-  updateProduct
-);
-
-/**
- * @swagger
- * /product/updateProduct/{id}:
+ * /edu/updateEdu/{id}:
  *   put:
- *     summary: Productni yangilash
- *     tags: [Product]
+ *     summary: Edu center yangilash
+ *     tags: [Edu]
  *     parameters:
  *       - in: path
  *         name: id
@@ -138,19 +113,24 @@ productRoute.put(
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               city:
  *                 type: string
- *               price:
+ *                 example: namangan
+ *               street:
+ *                 type: string
+ *                 example: chorsu
+ *               center_name:
+ *                 type: string
+ *                 example: lsl
+ *               branch:
+ *                 type: string
+ *                 example: string
+ *               rating:
  *                 type: number
- *               description:
- *                 type: string
- *               image:
- *                 type: string
- *               count:
- *                 type: number
+ *                 example: 4.5
  *     responses:
  *       200:
- *         description: Product yangilandi
+ *         description: Edu center yangilandi
  *       400:
  *         description: Validatsiya xatosi
  */
