@@ -136,5 +136,25 @@ eduRoute.put("/updateEdu/:id", updateEdu);
  */
 
 eduRoute.delete("/deleteEdu/:id", deleteEdu);
+
+/**
+ * @swagger
+ * /edu/deleteEdu/{id}:
+ *   delete:
+ *     summary: Edu center o'chirish
+ *     tags: [Edu]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Edu center o‘chirildi
+ *       404:
+ *         description: Edu center topilmadi
+ */
+
 eduRoute.get("/eduSearch", eduSearch);
 module.exports = { eduRoute };
