@@ -191,7 +191,7 @@ productRoute.get("/productSearch", productSearch);
  *          required: true
  *          schema:
  *            type: string
- *          example: productni nomini qiring
+ *          example: productni nomini qidiring
  *      responses:
  *        200:
  *          description: Qidiruv natijalari

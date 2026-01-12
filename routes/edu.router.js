@@ -157,4 +157,25 @@ eduRoute.delete("/deleteEdu/:id", deleteEdu);
  */
 
 eduRoute.get("/eduSearch", eduSearch);
+
+/**
+ * @swagger
+ * /edu/eduSearch:
+ *    get:
+ *      summary: Edu center qidirish
+ *      tags: [Edu]
+ *      parameters:
+ *       - in: query
+ *         name: query
+ *         required: true
+ *         schema:
+ *           type: string
+ *         example: edu center nomini qidiring
+ *      responses:
+ *        200:
+ *          description: Qidiruv natijalari
+ *        500:
+ *          description: Servar xatosi
+ */
+
 module.exports = { eduRoute };
