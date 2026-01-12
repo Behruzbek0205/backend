@@ -19,7 +19,7 @@ const {
 eduRoute.post("/eduCreate", eduCreate);
 /**
  * @swagger
- * /edu/:eduCreate
+ * /edu/eduCreate:
  *   post:
  *     summary: Yangi edu center yaratish
  *     tags: [Edu]
@@ -56,7 +56,42 @@ eduRoute.post("/eduCreate", eduCreate);
  */
 
 eduRoute.get("/eduGet", EduGet);
+
+/**
+ * @swagger
+ * /edu/eduGet:
+ *   get:
+ *     summary: Barcha edu centerlarni olish
+ *     tags: [Edu]
+ *     description: Edu centerlar olish
+ *     responses:
+ *       200:
+ *         description: Edu centerlar ro‘yxati
+ *       500:
+ *         description: Server xatosi
+ */
+
 eduRoute.get("/eduGetById/:id", eduGetId);
+
+/**
+ * @swagger
+ * /edu/eduGetById/{id}:
+ *   get:
+ *     summary: Edu center ID orqali olish
+ *     tags: [Edu]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Topilgan product
+ *       404:
+ *         description: Product topilmadi
+ */
+
 eduRoute.put("/updateEdu/:id", updateEdu);
 eduRoute.delete("/deleteEdu/:id", deleteEdu);
 eduRoute.get("/eduSearch", eduSearch);
