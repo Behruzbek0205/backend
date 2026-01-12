@@ -8,6 +8,14 @@ const {
   deleteEdu,
   eduSearch,
 } = require("../controller/eduController");
+
+/**
+ * @swagger
+ * tags:
+ *   name: Edu
+ *   description: Edu center olish
+ */
+
 eduRoute.post("/eduCreate", eduCreate);
 eduRoute.get("/eduGet", EduGet);
 eduRoute.get("/eduGetById/:id", eduGetId);
