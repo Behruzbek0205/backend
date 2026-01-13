@@ -124,7 +124,76 @@ houseRoute.put(
   updateHouse
 );
 
+/**
+ * @swagger
+ * /house/updateHouse/{id}:
+ *   put:
+ *     summary: House yangilash
+ *     tags: [House]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - region
+ *               - city
+ *               - street
+ *             properties:
+ *               region:
+ *                 type: string
+ *                 example: nevada
+ *               city:
+ *                 type: string
+ *                 example: new york
+ *               house_number:
+ *                 type: string
+ *                 example: 10
+ *               street:
+ *                 type: string
+ *                 example: nadaniyat
+ *               family_members:
+ *                 type: string
+ *                 example: 4
+ *               location:
+ *                 type: string
+ *                 example: 12.431.431
+ *     responses:
+ *       200:
+ *         description: House yangilandi
+ *       400:
+ *         description: Validatsiya xatosi
+ */
+
 houseRoute.delete("/deleteHouse/:id", deleteHouse);
+
+/**
+ * @swagger
+ * /house/deleteHouse/{id}:
+ *   delete:
+ *     summary: House o‘chirish
+ *     tags: [House]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: House o‘chirildi
+ *       404:
+ *         description: House topilmadi
+ */
+
+
 houseRoute.get("/houseSearch", houseSearch);
 
 module.exports = { houseRoute };
