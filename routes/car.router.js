@@ -83,6 +83,21 @@ carRoute.post("/CreateCar", CreateCar);
  */
 
 carRoute.get("/GetCar", GetCar);
+
+/**
+ * @swagger
+ * /cars/GetCar:
+ *   get:
+ *     summary: Barcha carlarni olish
+ *     tags: [Car]
+ *     description: Carlarni olish
+ *     responses:
+ *       200:
+ *         description: Moshinalr ro‘yxati
+ *       500:
+ *         description: Server xatosi
+ */
+
 carRoute.get("/GetCarById/:id", GetCarByID);
 carRoute.put("/updateCar/:id", updateCar);
 carRoute.delete("/deleteCar/:id", deleteCar);
