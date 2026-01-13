@@ -99,6 +99,25 @@ houseRoute.get("/houseGet", houseGet);
 
 houseRoute.get("/getHouseById/:id", houseGetByID);
 
+/**
+ * @swagger
+ * /house/gethouseById/{id}:
+ *   get:
+ *     summary: Houseni ID orqali olish
+ *     tags: [House]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Topilgan house
+ *       404:
+ *         description: House topilmadi
+ */
+
 houseRoute.put(
   "/updateHouse/:id",
   validationScheme(houseupdateValidationshceme),
