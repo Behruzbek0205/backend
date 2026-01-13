@@ -10,19 +10,18 @@ const {
   carSearch,
 } = require("../controller/carController");
 
-
 /**
  * @swagger
  * tags:
- *   - name: Car
- *     description: Carlarni boshqaruvi
-*/
+ *    name: Car
+ *    description: Carlarni boshqaruvi
+ */
 
 carRoute.post("/CreateCar", CreateCar);
 
 /**
  * @swagger
- * /car/CreateCar:
+ * /cars/CreateCar:
  *   post:
  *     summary: Yangi car yaratish
  *     tags: [Car]
@@ -56,12 +55,15 @@ carRoute.post("/CreateCar", CreateCar);
  *               carType:
  *                 type: string
  *                 example: sedan
- *               fuelType:
+ *               charging:
  *                 type: string
  *                 example: benzin
  *               weight:
  *                 type: number
  *                 example: 1670
+ *               gasoline:
+ *                 type: string
+ *                 example: benzin
  *               yearMachine:
  *                 type: number
  *                 example: 2024
