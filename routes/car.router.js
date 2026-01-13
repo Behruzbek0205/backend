@@ -9,7 +9,17 @@ const {
   Carlogin,
   carSearch,
 } = require("../controller/carController");
+
+/**
+ * @swagger
+ * tags: 
+ *   name: Car
+ *   description: Carlarni boshqaruvi
+ */
+
 carRoute.post("/CreateCar", CreateCar);
+
+
 carRoute.get("/GetCar", GetCar);
 carRoute.get("/GetCarById/:id", GetCarByID);
 carRoute.put("/updateCar/:id", updateCar);
