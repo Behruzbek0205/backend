@@ -99,6 +99,27 @@ carRoute.get("/GetCar", GetCar);
  */
 
 carRoute.get("/GetCarById/:id", GetCarByID);
+
+/**
+ * @swagger
+ * /cars/GetCarById/{id}:
+ *   get:
+ *     summary: Carni ID orqali olish
+ *     tags: [Car]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Topilgan car
+ *       404:
+ *         description: Car topilmadi
+ */
+
+
 carRoute.put("/updateCar/:id", updateCar);
 carRoute.delete("/deleteCar/:id", deleteCar);
 carRoute.post("/CarLogin", Carlogin);
