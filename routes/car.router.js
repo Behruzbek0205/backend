@@ -208,7 +208,27 @@ carRoute.delete("/deleteCar/:id", deleteCar);
  *         description: Car topilmadi
  */
 
-
 carRoute.post("/CarLogin", Carlogin);
+
 carRoute.get("/CarSearch", carSearch);
+/**
+ * @swagger
+ * /cars/CarSearch:
+ *    get:
+ *      summary: Car qidirish
+ *      tags: [Car]
+ *      parameters:
+ *        - in: query
+ *          name: query
+ *          required: true
+ *          schema:
+ *            type: string
+ *          example: Car nomini qidiring
+ *      responses:
+ *        200:
+ *          description: Qidiruv natijalari
+ *        500:
+ *          description: Servar xatosi
+ */
+
 module.exports = { carRoute };
