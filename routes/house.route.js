@@ -23,11 +23,63 @@ const validationScheme = (scheme) => (req, res, next) => {
   next();
 };
 
+/**
+ * @swagger
+ * tags:
+ *   name: House
+ *   description: House boshqaruvi
+ */
+
 houseRoute.post(
   "/houseCreate",
   validationScheme(houseValidationshceme),
   createHouse
 );
+
+/**
+ * @swagger
+ * /house/houseCreate:
+ *   post:
+ *     summary: Yangi house yaratish
+ *     tags: [House]
+ *     description: Yangi house yaratadi
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - region
+ *               - city
+ *               - street
+ *             properties:
+ *               region:
+ *                 type: string
+ *                 example: nevada
+ *               city:
+ *                 type: string
+ *                 example: new york
+ *               house_number:
+ *                 type: number
+ *                 example: 10
+ *               street:
+ *                 type: string
+ *                 example: nadaniyat
+ *               family_members:
+ *                 type: string
+ *                 example: 4
+ *               location:
+ *                 type: string
+ *                 example: 12.431.431
+ *     responses:
+ *       201:
+ *         description: House muvaffaqiyatli yaratildi
+ *       400:
+ *         description: Validatsiya xatosi
+ *       500:
+ *         description: Server xatosi
+ */
 
 houseRoute.get("/houseGet", houseGet);
 houseRoute.get("/getHouseById/:id", houseGetByID);
