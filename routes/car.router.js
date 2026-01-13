@@ -189,6 +189,24 @@ carRoute.put("/updateCar/:id", updateCar);
 
 carRoute.delete("/deleteCar/:id", deleteCar);
 
+/**
+ * @swagger
+ * /cars/deleteCar/{id}:
+ *   delete:
+ *     summary: Car o‘chirish
+ *     tags: [Car]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Car o‘chirildi
+ *       404:
+ *         description: Car topilmadi
+ */
 
 
 carRoute.post("/CarLogin", Carlogin);
