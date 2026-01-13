@@ -193,7 +193,26 @@ houseRoute.delete("/deleteHouse/:id", deleteHouse);
  *         description: House topilmadi
  */
 
-
 houseRoute.get("/houseSearch", houseSearch);
+
+/**
+ * @swagger
+ * /house/houseSearch:
+ *    get:
+ *      summary: House qidirish
+ *      tags: [House]
+ *      parameters:
+ *        - in: query
+ *          name: query
+ *          required: true
+ *          schema:
+ *            type: string
+ *          example: houseni nomini qidiring
+ *      responses:
+ *        200:
+ *          description: Qidiruv natijalari
+ *        500:
+ *          description: Servar xatosi
+ */
 
 module.exports = { houseRoute };
