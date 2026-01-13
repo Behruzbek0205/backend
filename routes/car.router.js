@@ -119,9 +119,78 @@ carRoute.get("/GetCarById/:id", GetCarByID);
  *         description: Car topilmadi
  */
 
-
 carRoute.put("/updateCar/:id", updateCar);
+
+/**
+ * @swagger
+ * /cars/updateCar/{id}:
+ *   put:
+ *     summary: Car yangilash
+ *     tags: [Car]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - title
+ *               - model
+ *               - price
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: Malibu 2
+ *               model:
+ *                 type: string
+ *                 example: Malibu Premier
+ *               description:
+ *                 type: string
+ *                 example: Xolati zo‘r
+ *               color:
+ *                 type: string
+ *                 example: qora
+ *               horsePower:
+ *                 type: number
+ *                 example: 253
+ *               carType:
+ *                 type: string
+ *                 example: sedan
+ *               charging:
+ *                 type: string
+ *                 example: benzin
+ *               weight:
+ *                 type: number
+ *                 example: 1670
+ *               gasoline:
+ *                 type: string
+ *                 example: benzin
+ *               yearMachine:
+ *                 type: number
+ *                 example: 2024
+ *               price:
+ *                 type: number
+ *                 example: 27000
+ *               seria:
+ *                 type: string
+ *                 example: abd2332cm
+ *     responses:
+ *       200:
+ *         description: Car yangilandi
+ *       400:
+ *         description: Validatsiya xatosi
+ */
+
 carRoute.delete("/deleteCar/:id", deleteCar);
+
+
+
 carRoute.post("/CarLogin", Carlogin);
 carRoute.get("/CarSearch", carSearch);
 module.exports = { carRoute };
