@@ -61,7 +61,7 @@ houseRoute.post(
  *                 type: string
  *                 example: new york
  *               house_number:
- *                 type: number
+ *                 type: string
  *                 example: 10
  *               street:
  *                 type: string
@@ -82,6 +82,21 @@ houseRoute.post(
  */
 
 houseRoute.get("/houseGet", houseGet);
+
+/**
+ * @swagger
+ * /house/houseGet:
+ *   get:
+ *     summary: Barcha houselarni olish
+ *     tags: [House]
+ *     description: House olish
+ *     responses:
+ *       200:
+ *         description: House ro‘yxati
+ *       500:
+ *         description: Server xatosi
+ */
+
 houseRoute.get("/getHouseById/:id", houseGetByID);
 
 houseRoute.put(
