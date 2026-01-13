@@ -177,5 +177,5 @@ eduRoute.get("/eduSearch", eduSearch);
  *        500:
  *          description: Servar xatosi
  */
-
+// edu swagger tugadi
 module.exports = { eduRoute };
