@@ -1,3 +1,4 @@
+const { required } = require("joi");
 const  mongoose  = require("mongoose");
 const { Schema } = mongoose;
 
@@ -25,6 +26,12 @@ const productScheme = new Schema({
     type: Number,
     default: 0,
   },
+
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  }
 });
 const Product = mongoose.model("Product", productScheme);
 module.exports = { Product };

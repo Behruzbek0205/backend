@@ -37,7 +37,7 @@ const userScheme = new Schema({
     enum: ["male", "female"],
     alias: "jinsi",
   },
-  prodcut_id: { type: Schema.Types.ObjectId, ref: Product },
+  prodcut_id: [{ type: Schema.Types.ObjectId, ref: "Product" }],
 });
 const User = model("User", userScheme);
 module.exports = { User };
