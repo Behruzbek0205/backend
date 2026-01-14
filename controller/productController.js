@@ -35,7 +35,7 @@ const createProduct = async (req, res) => {
 // getProduct
 const getProduct = async (req, res) => {
   try {
-    const product = await Product.find();
+    const product = await Product.find().populate("user");
     res.json({
       success: true,
       message: "Xamma productlar",
@@ -53,7 +53,7 @@ const getProduct = async (req, res) => {
 const productByID = async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).populate("user");
 
     if (!product) {
       return res.status(400).json({
