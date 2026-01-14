@@ -61,7 +61,7 @@ const CreateUser = async (req, res) => {
 // Get All Users
 const GetUser = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().populate("product");
 
     res.json({
       success: true,
@@ -80,7 +80,7 @@ const GetUser = async (req, res) => {
 const GetUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("product");
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -225,14 +225,14 @@ const userSearch = async (req, res) => {
   }
 };
 
-    module.exports = {
-      CreateUser,
-      GetUser,
-      GetUserById,
-      updateUser,
-      deleteUser,
-      postLogin,
-      userSearch,
-    };
+module.exports = {
+  CreateUser,
+  GetUser,
+  GetUserById,
+  updateUser,
+  deleteUser,
+  postLogin,
+  userSearch,
+};
 
 // homework car qoshiladon create yani post qilib kelish
