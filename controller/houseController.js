@@ -1,5 +1,5 @@
 //  house index
-const { House } = require("../models/houseSheme");
+const { House } = require("../models/houseScheme");
 
 const createHouse = async (req, res) => {
   try {

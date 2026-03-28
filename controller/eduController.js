@@ -1,4 +1,4 @@
-const { Edu } = require("../models/eduSheme");
+const { Edu } = require("../models/eduScheme");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 

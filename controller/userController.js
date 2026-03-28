@@ -1,4 +1,4 @@
-const { User } = require("../models/userSheme");
+const { User } = require("../models/userScheme");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -122,7 +122,7 @@ const updateUser = async (req, res) => {
 
     res.json({
       success: true,
-      message: "User update seccesfully",
+      message: "User muvaffaqiyatli yangilandi",
       user: updateUser,
     });
   } catch (error) {
@@ -150,7 +150,7 @@ const deleteUser = async (req, res) => {
 
     res.json({
       success: true,
-      message: "User deleted seccesfully",
+      message: "User muvaffaqiyatli ochirildi",
       user: deleteUser,
     });
   } catch (error) {

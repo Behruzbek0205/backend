@@ -1,4 +1,4 @@
-const { Car } = require("../models/carSheme");
+const { Car } = require("../models/carScheme");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { model } = require("mongoose");
@@ -31,7 +31,7 @@ const CreateCar = async (req, res) => {
     if (OldCard) {
       return res.status(400).json({
         success: false,
-        message: "Car allaqachon mavjud",
+        message: "Bu car allaqachon mavjud",
       });
     }
     const hashedPassword = await bcrypt.hash(seria, 10);
@@ -102,7 +102,7 @@ const GetCarByID = async (req, res) => {
       innerData: car,
     });
   } catch (error) {
-    console.log("error user by id", error);
+    console.log("error car by id", error);
     res.status(500).json({
       success: false,
       message: "Car olishda xato yuz berdi",
@@ -155,7 +155,7 @@ const updateCar = async (req, res) => {
 
     res.json({
       success: true,
-      message: "Car update seccesfully",
+      message: "Car mu",
       car: updateCar,
     });
   } catch (error) {
